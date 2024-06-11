@@ -56,6 +56,13 @@ def decode_map_features_from_proto(map_features):
     point_cnt = 0
     for cur_data in map_features:
         cur_info = {'id': cur_data.id}
+        
+        print(f"{cur_data.lane.ByteSize()=}")
+        print(f"{cur_data.road_line.ByteSize()=}")
+        print(f"{cur_data.road_edge.ByteSize()=}")
+        print(f"{cur_data.stop_sign.ByteSize()=}")
+        print(f"{cur_data.crosswalk.ByteSize()=}")
+        print(f"{cur_data.speed_bump.ByteSize()=}")
 
         if cur_data.lane.ByteSize() > 0:
             cur_info['speed_limit_mph'] = cur_data.lane.speed_limit_mph
@@ -185,6 +192,8 @@ def process_waymo_data_with_scenario_proto(data_file, output_path=None):
             'track_index': [cur_pred.track_index for cur_pred in scenario.tracks_to_predict],
             'difficulty': [cur_pred.difficulty for cur_pred in scenario.tracks_to_predict]
         }  # for training: suggestion of objects to train on, for val/test: need to be predicted
+        
+        print("SCENARIO.TRACKS ===> ", scenario.tracks)
 
         track_infos = decode_tracks_from_proto(scenario.tracks)
         info['tracks_to_predict']['object_type'] = [track_infos['object_type'][cur_idx] for cur_idx in info['tracks_to_predict']['track_index']]
