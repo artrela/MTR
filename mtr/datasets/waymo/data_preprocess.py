@@ -57,12 +57,14 @@ def decode_map_features_from_proto(map_features):
     for cur_data in map_features:
         cur_info = {'id': cur_data.id}
         
+        print("================================")
         print(f"{cur_data.lane.ByteSize()=}")
         print(f"{cur_data.road_line.ByteSize()=}")
         print(f"{cur_data.road_edge.ByteSize()=}")
         print(f"{cur_data.stop_sign.ByteSize()=}")
         print(f"{cur_data.crosswalk.ByteSize()=}")
         print(f"{cur_data.speed_bump.ByteSize()=}")
+        print("================================")
 
         if cur_data.lane.ByteSize() > 0:
             cur_info['speed_limit_mph'] = cur_data.lane.speed_limit_mph
@@ -138,6 +140,7 @@ def decode_map_features_from_proto(map_features):
             map_infos['speed_bump'].append(cur_info)
 
         else:
+            print(f"DRIVEWAY ====>   {cur_data.driveway.ByteSize()=}")
             print(cur_data)
             raise ValueError
 
@@ -193,7 +196,7 @@ def process_waymo_data_with_scenario_proto(data_file, output_path=None):
             'difficulty': [cur_pred.difficulty for cur_pred in scenario.tracks_to_predict]
         }  # for training: suggestion of objects to train on, for val/test: need to be predicted
         
-        print("SCENARIO.TRACKS ===> ", scenario.tracks)
+        # print("SCENARIO.TRACKS ===> ", scenario.tracks)
 
         track_infos = decode_tracks_from_proto(scenario.tracks)
         info['tracks_to_predict']['object_type'] = [track_infos['object_type'][cur_idx] for cur_idx in info['tracks_to_predict']['track_index']]
