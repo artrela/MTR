@@ -57,14 +57,14 @@ def decode_map_features_from_proto(map_features):
     for cur_data in map_features:
         cur_info = {'id': cur_data.id}
         
-        print("================================")
-        print(f"{cur_data.lane.ByteSize()=}")
-        print(f"{cur_data.road_line.ByteSize()=}")
-        print(f"{cur_data.road_edge.ByteSize()=}")
-        print(f"{cur_data.stop_sign.ByteSize()=}")
-        print(f"{cur_data.crosswalk.ByteSize()=}")
-        print(f"{cur_data.speed_bump.ByteSize()=}")
-        print("================================")
+        print(f"================================\
+{cur_data.lane.ByteSize()=}\n \
+{cur_data.road_line.ByteSize()=}\n \
+{cur_data.road_edge.ByteSize()=}\n \
+{cur_data.stop_sign.ByteSize()=}\n \
+{cur_data.crosswalk.ByteSize()=}\n \
+{cur_data.speed_bump.ByteSize()=} \
+================================")
 
         if cur_data.lane.ByteSize() > 0:
             cur_info['speed_limit_mph'] = cur_data.lane.speed_limit_mph
@@ -140,7 +140,7 @@ def decode_map_features_from_proto(map_features):
             map_infos['speed_bump'].append(cur_info)
 
         else:
-            print(f"DRIVEWAY ====>   {cur_data.driveway.ByteSize()=}")
+            print(f"DRIVEWAY ====> {cur_data.driveway.ByteSize()=}")
             print(cur_data)
             raise ValueError
 
