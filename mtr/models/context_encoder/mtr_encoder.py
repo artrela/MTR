@@ -9,10 +9,14 @@ import torch
 import torch.nn as nn
 
 
-from mtr.models.utils.transformer import transformer_encoder_layer, position_encoding_utils
-from mtr.models.utils import polyline_encoder
-from mtr.utils import common_utils
-from mtr.ops.knn import knn_utils
+from models.utils.transformer import transformer_encoder_layer, position_encoding_utils
+# from mtr.models.utils.transformer import transformer_encoder_layer, position_encoding_utils
+from models.utils import polyline_encoder
+# from mtr.models.utils import polyline_encoder
+from utils import common_utils
+# from mtr.utils import common_utils
+from ops.knn import knn_utils
+# from mtr.ops.knn import knn_utils
 
 
 class MTREncoder(nn.Module):
