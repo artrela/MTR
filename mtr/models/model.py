@@ -9,8 +9,8 @@ import os
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .context_encoder import build_context_encoder
-from .motion_decoder import build_motion_decoder
+from mtr.models.context_encoder import build_context_encoder
+from mtr.models.motion_decoder import build_motion_decoder
 
 
 class MotionTransformer(nn.Module):
