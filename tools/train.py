@@ -51,6 +51,7 @@ def parse_config():
     parser.add_argument('--not_eval_with_train', action='store_true', default=False, help='')
     parser.add_argument('--logger_iter_interval', type=int, default=50, help='')
     parser.add_argument('--ckpt_save_time_interval', type=int, default=300, help='in terms of seconds')
+    parser.add_argument('--output_dir', help='place to save files')
 
     parser.add_argument('--add_worker_init_fn', action='store_true', default=False, help='')
     args = parser.parse_args()
@@ -132,6 +133,7 @@ def main():
     if args.fix_random_seed:
         common_utils.set_random_seed(666)
 
+    # output_dir = cfg.ROOT_DIR / 'output' / cfg.EXP_GROUP_PATH / cfg.TAG / args.extra_tag
     output_dir = cfg.ROOT_DIR / 'output' / cfg.EXP_GROUP_PATH / cfg.TAG / args.extra_tag
     ckpt_dir = output_dir / 'ckpt'
     output_dir.mkdir(parents=True, exist_ok=True)
