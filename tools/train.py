@@ -135,7 +135,7 @@ def main():
 
     # output_dir = cfg.ROOT_DIR / 'output' / cfg.EXP_GROUP_PATH / cfg.TAG / args.extra_tag
     output_dir = os.path.join(args.output_dir + "/output/" + cfg.EXP_GROUP_PATH + "/" + cfg.TAG + "/" + args.extra_tag)
-    ckpt_dir = output_dir / 'ckpt'
+    ckpt_dir = os.path.join(output_dir + '/ckpt')
     output_dir.mkdir(parents=True, exist_ok=True)
     ckpt_dir.mkdir(parents=True, exist_ok=True)
 
