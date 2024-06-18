@@ -181,8 +181,9 @@ def train_model(model, optimizer, train_loader, optim_cfg,
                     result_dir=eval_output_dir, save_to_file=False, logger_iter_interval=max(logger_iter_interval // 5, 1)
                 )
                 if cfg.LOCAL_RANK == 0:
-                    for key, val in tb_dict.items():
-                        tb_log.add_scalar('eval/' + key, val, trained_epoch)
+                    if tb_log is not None:
+                        for key, val in tb_dict.items():
+                            tb_log.add_scalar('eval/' + key, val, trained_epoch)
 
                     if 'mAP' in tb_dict:
                         best_record_file = eval_output_dir / ('best_eval_record.txt')
